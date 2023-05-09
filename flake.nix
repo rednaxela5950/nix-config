@@ -74,7 +74,7 @@
 
       packages = forEachPkgs (pkgs: (import ./pkgs { inherit pkgs; }) // {
         neovim = let
-          homeCfg = mkHome [ ./home/misterio/generic.nix ] pkgs;
+          homeCfg = mkHome [ ./home/cellis/generic.nix ] pkgs;
         in pkgs.writeShellScriptBin "nvim" ''
           ${homeCfg.config.programs.neovim.finalPackage}/bin/nvim \
           -u ${homeCfg.config.xdg.configFile."nvim/init.lua".source} \
@@ -88,6 +88,7 @@
         # Desktops
         atlas = mkNixos [ ./hosts/atlas ];
         maia = mkNixos [ ./hosts/maia ];
+        cumputer = mkNixos [ ./hosts/cumputer ];
         # Laptops
         pleione = mkNixos [ ./hosts/pleione ];
         electra = mkNixos [ ./hosts/electra ];
@@ -101,6 +102,7 @@
         # Desktops
         "misterio@atlas" = mkHome [ ./home/misterio/atlas.nix ] nixpkgs.legacyPackages."x86_64-linux";
         "misterio@maia" = mkHome [ ./home/misterio/maia.nix ] nixpkgs.legacyPackages."x86_64-linux";
+        "cellis@cumputer" = mkHome [ ./home/cellis/cumputer.nix ] nixpkgs.LegacyPackages."x86_64-linux"; # FIXME: Legacy?
         # Laptops
         "misterio@pleione" = mkHome [ ./home/misterio/pleione.nix ] nixpkgs.legacyPackages."x86_64-linux";
         "misterio@electra" = mkHome [ ./home/misterio/electra.nix ] nixpkgs.legacyPackages."x86_64-linux";
